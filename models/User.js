@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+// const { Schema, model, Types } = require('mongoose');
+
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -17,13 +19,24 @@ const userSchema = new mongoose.Schema({
             },
         }
     },
-    thoughts:{
-        type:String,
-        required:true,
-        unique:true,
+    thoughts:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+    }],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    toJSON: {
+          virtuals: true,
+          getters: true
     },
-    
 });
 
-//Export the model
+
+userSchema.virtual('friendCount').get(function() {
+    return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
+});
+
+
 module.exports = mongoose.model('User', userSchema);
