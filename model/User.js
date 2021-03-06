@@ -30,19 +30,19 @@ const userSchema = new Schema({
     }
     ]
 },
-{
-    toJSON: {
-      virtuals: true,
-      getters: true
-    },
-    id: false
-  }
+// {
+//     toJSON: {
+//       virtuals: true,
+//       getters: true
+//     },
+//     id: false
+//   }
 );
 
 
-userSchema.virtual('friendCount').get(function() {
-    return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
-});
+// userSchema.virtual('friendCount').get(function() {
+//     return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
+// });
 
 const User = model('User', userSchema)
 
