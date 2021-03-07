@@ -55,6 +55,12 @@ const userController = {
                     res.status(404).json({ message: 'No users found with this id!' });
                     return;
                 }
+
+                return Thought.findOneAndUpdate(
+                    { _id: params.thoughtId },
+                    { $pull: { thoughts: params.thoughtId } },
+                    { new: true }
+                  ),
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
