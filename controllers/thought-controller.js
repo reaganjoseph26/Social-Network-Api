@@ -18,7 +18,7 @@ const thoughtController = {
             });
     },
     getThoughtsById({ params }, res) {
-        Thoughts.findOne({ _id: params.id })
+        Thought.findOne({ _id: params.id })
             .populate({
                 path: 'reactions',
                 select: '-__v'
@@ -39,10 +39,10 @@ const thoughtController = {
     addThought({ body }, res) {
         console.log(body);
         Thought.create(body)
-          .then(({ _id }) => {
+          .then(({ username, _id }) => {
             return User.findOneAndUpdate(
               { username: username},
-              { $push: { thought: _id } },
+              { $push: { thoughts: _id } },
               { new: true, runValidators: true }
             );
           })
@@ -55,6 +55,42 @@ const thoughtController = {
           })
         .catch(err => res.json(err));
     },
+
+    updateThought({ params, body }, res) {
+        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+            .then(dbThoughtsData => {
+                if (!dbThoughtsData) {
+                    res.status(404).json({ message: 'No thoughts associated with this id. Try again!' });
+                    return;
+                }
+                res.json(dbThoughtsData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+
+    deleteThought({ params }, res) {
+        Thought.findOneAndDelete({ _id: params.id })
+        .then(({ username }) => {
+            return User.findOneAndUpdate(
+                {username: username},
+                { $pull: { thoughts: params.id } },
+                { new: true }
+            )
+        })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No users found with this id. Try again!' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err)
+            })
+    },
+
+    
 
     
 }
