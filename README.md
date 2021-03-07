@@ -14,11 +14,11 @@
 
   ## Installation
   1. On your local machine, set up a folder and clone down this repository. 
-  2. Run the command <npm install> for dependencies installations. 
-  3. Check you rpackage.json to verify that express.js and mongoose are in the dependencies object. If not, see step 4. 
-  4. Run the command <npm install express --save> and <npm install mongoose>.
+  2. Run the command npm install for dependencies installations. 
+  3. Check youpr package.json to verify that express.js and mongoose are in the dependencies object. If not, see step 4. 
+  4. Run the command npm install express --save and npm install mongoose.
   5. Verify dependencies. 
-  6. In your terminal, run the command <npm start>. 
+  6. In your terminal, run the command npm start. 
   7. Open Insomnia Core and create a new enviornment setting up your localhost along with the route to create a user (http://localhost:3001/api/user).
    8. After user is set up, all other routes will run smoothly.  
    </br>
@@ -30,7 +30,8 @@
   ## Usage
   The usuage of this project is to provide an already working back-end to anyone developing a social app. 
   </br>
-  For a video demostration, click the link to view tutorial ().
+  For a video demostration, click the link to view tutorial Part One (https://www.youtube.com/watch?v=WirR0zXRk40)
+  Part Two (https://www.youtube.com/watch?v=OSRpq-OiYsU)
   </br>
   A successful POST of a user looks like such image below
   </br>
