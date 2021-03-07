@@ -25,15 +25,17 @@
    If unfamiliar with Insomnia Core route set up, plase vist (https://support.insomnia.rest/article/157-getting-started-with-insomnia)
    </br>
    Check the folder routes too see all route information with GET, POST, DELETE, and UPDATE handles. 
-   </br>
-   A successful POST of a user looks like such image below
-   </br>
-   ![ScreenShot](/images/Screenshot.jpg)
-
+   
+   
   ## Usage
   The usuage of this project is to provide an already working back-end to anyone developing a social app. 
   </br>
   For a video demostration, click the link to view tutorial ().
+  </br>
+  A successful POST of a user looks like such image below
+  </br>
+  ![ScreenShot](./images/Screenshot.jpg)
+
 
   ## License
   This licence is covered undered (https://opensource.org/licenses/MIT).
