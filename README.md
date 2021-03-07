@@ -28,7 +28,7 @@
    </br>
    A successful POST of a user looks like such image below
    </br>
-   ![ScreenShot](./images/Screenshot.jpg)
+   ![ScreenShot](/images/Screenshot.jpg)
 
   ## Usage
   The usuage of this project is to provide an already working back-end to anyone developing a social app. 
