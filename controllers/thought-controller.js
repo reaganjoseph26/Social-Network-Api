@@ -90,6 +90,46 @@ const thoughtController = {
             })
     },
 
+    createReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { reactions: body } },
+            { new: true, runValidators: true }
+        )
+            .then(dbThoughtsData => {
+                if (!dbThoughtsData) {
+                    res.status(404).json({ message: 'No thought found at this id. Try again!' });
+                    return;
+                }
+
+                res.json(dbThoughtsData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            });
+    },
+
+    deleteReaction({ params }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
+        )
+            .then(dbThoughtsData => {
+                if (!dbThoughtsData) {
+                    res.status(404).json({ message: 'No thoughts found at this id. Try again!' });
+                    return;
+                }
+
+                res.json(dbThoughtsData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            });
+    }
+
     
 
     
